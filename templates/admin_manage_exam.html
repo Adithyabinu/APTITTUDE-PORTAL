@@ -1,0 +1,85 @@
+{% include 'admin_header.html'%}
+
+ <section id="hero">
+    <div class="hero-container">
+    
+   
+
+
+<center>
+	<form method="post">
+	{% if data['updater'] %}
+	<h1>update exam</h1>
+	
+		<table class="table" style="width: 600px;color:white">
+			<tr>
+				<th>Date Time</th>
+				<td><input type="date" class="form-control" value="{{data['exam'][0]['datetime']}}" name="datetime" required></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input class="btn btn-info" type="submit" name="update" value="UPDATE"></td>
+			</tr>
+		</table>
+			
+{% else %}
+<h1>EXAMINATION </h1>
+		<table class="table" style="width: 600px;color: white">
+			<tr>
+				<th>select subject</th>
+				<td>
+					<select name="subid" class="form-control">
+						{% for row in data['sub'] %}
+						<option value="{{row['subject_id']}}">{{row['subject_name']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Date Time</th>
+				<td><input type="date" class="form-control" name="datetime"></td>
+			</tr>
+			<tr>
+				<th>Notification Details</th>
+				<td><input type="text" name="notification_details"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input class="btn btn-info" type="submit" name="ADD" value="ADD">
+				</td>
+			</tr>
+		</table>
+	</form>
+	{% endif %}
+
+	 </div>
+  </section><!-- End Hero -->
+
+<center>
+	<h1>VIEW EXAM DETAILS</h1>
+	<table class="table" style="width: 600px">
+		<tr>
+			<th>Subject Name</th>
+			<th>Date Time</th>
+			<th>Status</th>
+		</tr>
+		{% for row in data['exam'] %}
+		<tr>
+			<td>{{row['subject_name']}}</td>
+			<td>{{row['datetime']}}</td>
+			<td>{{row['status']}}</td>
+			<td><a class="btn btn-info" href="admin_view_exam_added_teachers?id={{row['exam_id']}}">VIEW TEACHERS</a></td>
+			{% if row['status']=="pending" %}
+				<td><a class="btn btn-succcess" href="?action=delete&id={{row['exam_id']}}">delete</a></td>
+				<td><a class="btn btn-primary" href="?action=update&id={{row['exam_id']}}">update</a></td>
+				<td><a class="btn btn-warning" href="?action=start&id={{row['exam_id']}}">Start</a></td>
+			{% elif row['status']=="Start" %}
+				<td><a class="btn btn-succcess" href="?action=stop&id={{row['exam_id']}}">Stop</a></td>
+			{% elif row['status']=="Stop" %}
+				<td><a class="btn btn-success" href="?action=plot&id={{row['exam_id']}}">Plot Result</a></td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</table>
+	
+</center>
+
+{% include 'footer.html'%}

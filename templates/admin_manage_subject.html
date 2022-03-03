@@ -1,0 +1,40 @@
+{% include 'admin_header.html'%}
+
+ <section id="hero">
+    <div class="hero-container">
+     <center>
+	<h1>SUBJECT</h1>
+	<form method="post">
+		<table class="table" style="width: 600px;color: white">
+			<tr>
+				<th>subject</th>
+				<td><input type="text" class="form-control" name="s_name" class="form-control" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			
+				<td align="center" colspan="2"><input class="btn btn-info" type="submit" name="manage" value="manage">
+			</tr>
+		</table>
+	</form>
+    </div>
+  </section><!-- End Hero -->
+
+
+<center>
+	<h1>View Subject</h1>
+	<table class="table" style="width: 600px">
+		<tr>
+			<th>slno</th>
+			<th>subject name</th>
+			
+		</tr>
+		{% for row in data['subject'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['subject_name']}}</td>
+			
+		{% endfor %}
+		
+	</table>
+</center>
+</center>
+{% include 'footer.html'%}

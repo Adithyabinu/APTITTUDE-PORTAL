@@ -1,0 +1,32 @@
+{% include 'student_header.html'%}
+
+ <section id="hero" style="max-height: 500px;min-height: 500px">
+    <div class="hero-container">
+     
+      <h1>APTITTUDE PORTAL</h1>
+    
+    </div>
+  </section><!-- End Hero -->
+
+<center>
+		<form method="post">
+	
+
+
+	<h1>View Attendance</h1>
+	<table class="table" style="width: 600px">
+		<tr>
+			<th>slno</th>
+			<th>Datetime</th>
+			
+		</tr>
+		{% for row in data['attendance'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['date']}}</td>
+		</tr>
+			
+		{% endfor %}
+	</table>
+</center>
+{% include 'footer.html'%}

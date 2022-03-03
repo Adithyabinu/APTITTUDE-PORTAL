@@ -1,0 +1,97 @@
+{% include 'student_header.html' %}
+
+ <section id="hero">
+    <div class="hero-container">
+     
+   
+    
+
+<form method="post">
+<table align="center" style="color: white" >
+	<tr>
+		<td style="width:150px"><strong style="font-size: 20px;">Exam Name   :</strong></td>
+		<td><strong style="font-size: 20px;color:red">{{ data['examname'][0]['exam'] }}</strong></td>
+	</tr>
+</table>
+<br>
+<br>
+<table align="right" >
+	<tr>
+		<td style="width:250px"><strong style="font-size: 20px;color: white">Student Details   :</strong></td>
+		<td><strong style="font-size: 20px;color:red">{{ data['sdetails'][0]['names'] }}<br>{{ data['sdetails'][0]['email'] }}</strong></td>
+	</tr>
+</table>
+<br>
+<br>
+
+<input type="text"  name="dict" value="{{ data['a'] }}">
+<input type="text"  name="dictposition" value="{{ data['position'] }}">
+{% if data['check'][0]['button']=="None" %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table align="center">
+	<tr>
+		<td><input class="btn btn-info" type="submit" name="startexam" value="Start Exam"></td>
+	</tr>
+</table>
+{% else %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="text"  name="qid" value="{{ data['questions'][0]['question_id'] }}">
+<input type="text" hidden name="qstnid" value="{{ data['qstnid'] }}">
+<input type="text" hidden name="numofval" value="{{ data['numofval'] }}">
+<input type="text" hidden name="numofvalinc" value="{{ data['numofvalinc'] }}">
+<table align="center" style="width:600px" border="5">
+	<tr>
+		<td style="color: white" align="center" colspan="2">Questions No : {{ data['qstnid'] }}</td>
+	</tr>
+	<tr>
+		<td style="width:300px;color: white"  align="center" colspan="2"><strong style="font-size: 20px;">{{ data['questions'][0]['question_desc'] }}</strong></td>
+	</tr>
+	<tr>
+		<td colspan="2"><br><br></td>
+	</tr>
+	<tr>
+		<td style="color: white" align="center">Options</td>
+		<td>
+		<table>
+		{% for row in data['answerdetails'] %}
+			<tr>
+			{% if data['answered'][0]['option_id']== row['option_id'] %}
+			<td style="color: white"><input type="radio" name="selanswer" checked value="{{ row['option_id'] }}">{{ row['option'] }}</td>
+			{% else %}
+				<td style="color: white"><input type="radio" name="selanswer" value="{{ row['option_id'] }}">{{ row['option'] }}</td>
+			{% endif %}
+			</tr>
+			
+		{% endfor %}
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td  align="center"><input type="submit" name="next" value="next"></td>
+		<td  align="center"><input type="submit" name="previous" value="previous"></td>
+	</tr>
+	<tr>
+		<td  align="center"><input type="submit" name="finish" value="Finish"></td>
+	</tr>
+</table>
+
+{% endif %}
+<input type="text"  value="{{ data['flag'] }}" name="flag">
+<input type="text"  value="{{ data['pflag'] }}" name="pflag">
+</form>
+
+</div>
+  </section><!-- End Hero -->
+{% include 'footer.html' %}

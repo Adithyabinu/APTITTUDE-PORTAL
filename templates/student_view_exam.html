@@ -1,0 +1,40 @@
+{% include 'student_header.html' %}
+
+ <section id="hero" style="max-height: 500px;min-height: 500px">
+    <div class="hero-container">
+     
+      <h1>APTITUDE PORTAL</h1>
+      <h2>STUDENT</h2>
+    
+    </div>
+  </section><!-- End Hero -->
+
+<h1>View Exam</h1>
+	<table class="table" style="width: 700px">
+		<tr>
+			<th>slno</th>
+			<th>Datetime</th>
+<!-- 			<th>Status</th>
+ -->			<th>subject name</th>
+			
+		</tr>
+		{% for row in data['exam'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['datetime']}}</td>
+<!-- 			<td>{{row['status']}}</td>
+ -->			<td>{{row['subject_name']}}</td>
+			{% if row['status']=="Start"%}
+			<td><a class="btn btn-info" class="btn btn-success" href="startexam?eid={{row['exam_id']}}">Attend</a></td>
+			
+			{% else %}
+			<td>{{row['status']}}</td>
+			{%endif%}
+			<td><a class="btn btn-info" href="student_view_result?eid={{row['exam_id']}}">Result</a></td>
+		</tr>
+			
+		{% endfor %}
+		
+	</table>
+</center>
+{% include 'footer.html' %}

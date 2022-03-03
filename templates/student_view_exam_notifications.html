@@ -1,0 +1,30 @@
+{% include 'student_header.html' %}
+ <section id="hero" style="max-height: 500px;min-height: 500px">
+    <div class="hero-container">
+     
+      <h1>APTITTUDE PORTAL</h1>
+    
+    </div>
+  </section><!-- End Hero -->
+<center>
+	<form method="post">
+	<h1>VIEW EXAM NOTIFICATION</h1>
+	<table class="table" style="width: 600px">
+		<tr>
+			<th>slno</th>
+			<th>SUBJECT NAME</th>
+			<th>DATE TIME</th>
+			<th>NOTIFICATION DETAILS</th>
+		</tr>
+		{% for row in data['notification_students'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['subject_name']}}</td>
+			<td>{{row['datetime']}}</td>
+			<td>{{row['notification_details']}}</td>
+		</tr>
+		{% endfor %}
+		
+</table>
+</center>
+{% include 'footer.html' %}

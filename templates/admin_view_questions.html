@@ -1,0 +1,38 @@
+{% include 'admin_header.html'%}
+
+ <section id="hero" style="max-height: 500px;min-height: 500px">
+    <div class="hero-container">
+     
+      <h1>We're Creative Agency</h1>
+    
+    </div>
+  </section><!-- End Hero -->
+
+  
+<center>
+	<form method="post">
+<h1>teacher add question</h1>
+	
+	<table class="table" style="width: 700px">
+		<tr>
+			<th>Slno</th>
+
+			
+			<th>Question Description</th>
+			
+			
+		</tr>
+		{% for row in data['questions'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			
+			<td>{{row['question_desc']}}</td>
+
+		</tr>
+			
+		{% endfor %}
+		
+	</table>
+</center>
+{% include 'footer.html' %}
+				

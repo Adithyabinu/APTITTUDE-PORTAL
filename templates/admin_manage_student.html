@@ -1,0 +1,156 @@
+{% include 'admin_header.html'%}
+
+ <section id="hero">
+    <div class="hero-container">
+    
+  
+
+
+<center>
+		<form method="post">
+	{% if data['stud'] %}
+	<h1>update student</h1>
+
+		<table class="table" style="width: 600px">
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['first_name']}}" name="fname"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['last_name']}}" name="lname"></td>
+			</tr>
+			<tr>
+				<th>Phone Number</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['phone']}}" name="pno"></td>
+			</tr>
+			<tr>
+				<th>Gender</th>
+				<td><input type="radio" value="{{data['stud'][0]['gender']}}" name="gender">Male<br>
+					<input type="radio" value="{{data['stud'][0]['gender']}}" name="gender">Female<br>
+				</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" class="form-control" value="{{data['stud'][0]['email']}}" name="email"></td>
+			</tr>
+			<tr>
+				<th>Course</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['course']}}" name="course"></td>
+			</tr>
+			<tr>
+				<th>Semester</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['semester']}}" name="sem"></td>
+			</tr>
+			<tr>
+				<th>House Name</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['house_name']}}" name="hname"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['place']}}"name="place"></td>
+			</tr>
+			<tr>
+				<th>Pincode</th>
+				<td><input type="text" class="form-control" value="{{data['stud'][0]['pincode']}}" name="pin"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="update">
+			</tr>
+		</table>
+{% else %}
+	<h1>STUDENT REGISTRATION</h1>
+		<table style="width: 600px;color: white">
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" class="form-control" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" class="form-control" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			<tr>
+				<th>Phone Number</th>
+				<td><input type="text" name="pno" class="form-control" pattern="[7-9]{1}[0-9]{9}" required></td>
+			</tr>
+			<tr>
+				<th>Gender</th>
+				<td><input type="radio" name="Gender" required="">Male<br>
+					<input type="radio" name="Gender" required="">Female<br>
+				</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" class="form-control" name="email" required=""></td>
+			</tr>
+			<tr>
+				<th>Course</th>
+				<td><input type="text" class="form-control" name="Course" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			<tr>
+				<th>Semester</th>
+				<td><input type="text" class="form-control" name="sem" required=""></td>
+			</tr>
+			<tr>
+				<th>House Name</th>
+				<td><input type="text" class="form-control" name="hname" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="place" class="form-control" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			<tr>
+				<th>Pincode</th>
+				<td><input type="text" name="pin" class="form-control" placeholder="MUST BE 6 DIGIT" required pattern="[0-9]+$" ></td>
+			</tr>
+			<tr>
+				<th>User Name</th>
+				<td><input type="text" name="uname" class="form-control" placeholder="MUST BE 8 CHARACTER" required></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" name="pwd" class="form-control" placeholder="MUST BE 8 CHARACTER" required></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" class="btn btn-success" name="register" value="REGISTER">
+			</tr>
+		</table>
+	</form>
+	{% endif %}
+	  </div>
+  </section><!-- End Hero -->
+
+<center>
+	<h1>VIEW STUDENT</h1>
+	<table class="table" style="width: 700px">
+		<tr>
+			<th>Student Name</th>
+			<th>Phone Number</th>
+			<th>Gender</th>
+			<th>Email</th>
+			<th>Course</th>
+			<th>Semester</th>
+			<th>house name</th>
+			<th>Place</th>
+			<th>Pincode</th>
+		</tr>
+		{% for row in data['student_reg'] %}
+		<tr>
+			<td>{{row['first_name']+ " "+row['last_name']}}</td>
+			<td>{{row['phone']}}</td>
+			<td>{{row['gender']}}</td>
+			<td>{{row['email']}}</td>
+			<td>{{row['course']}}</td>
+			<td>{{row['semester']}}</td>
+			<td>{{row['house_name']}}</td>
+			<td>{{row['place']}}</td>
+			<td>{{row['pincode']}}</td>
+			<td><a class="btn btn-success" href="?action=delete&id={{row['login_id']}}">delete</a></td>
+			<td><a class="btn btn-info" href="?action=update&id={{row['login_id']}}">update</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</center>
+		
+</center>
+{% include 'footer.html'%}

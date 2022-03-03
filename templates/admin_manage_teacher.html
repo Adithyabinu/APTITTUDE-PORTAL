@@ -1,0 +1,118 @@
+{% include 'admin_header.html'%}
+
+ <section id="hero">
+    <div class="hero-container">
+     
+   
+
+<center>
+	{% if data['teach'] %}
+	<h1>update teacher</h1>
+	<form method="post">
+		<table class="table" style="width: 700px">
+			<tr>
+				<th>Subject</th>
+				<td>
+					<select name="subject" class="form-control">
+						{% for row in data['subject'] %}
+						<option value="{{data['teach'][0]['subject_id']}}">{{row['subject_name']}}</option>
+						{% endfor %}
+						
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" class="form-control" value="{{data['teach'][0]['first_name']}}" name="fname"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" class="form-control" value="{{data['teach'][0]['last_name']}}" name="lname"></td>
+			</tr>
+			<tr>
+				<th>Phone Number</th>
+				<td><input type="text" class="form-control" value="{{data['teach'][0]['phone']}}" name="pno"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="text" class="form-control" value="{{data['teach'][0]['email']}}" name="email"></td>
+			</tr>
+			
+			<tr>
+				<td align="center" colspan="2"><input type="submit" class="btn btn-info" name="update" value="REGISTER">
+			</tr>
+		</table>
+	</form>
+{% else %}
+	<h1>TEACHER REGISTRATION</h1>
+	<form method="post">
+		<table class="table" style="width: 600px;color: white">
+			<tr>
+				<th>Subject</th>
+				<td>
+					<select name="subject" class="form-control">
+						{% for row in data['subject'] %}
+						<option value="{{row['subject_id']}}">{{row['subject_name']}}</option>
+						{% endfor %}
+						
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" class="form-control" name="fname" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" class="form-control" name="lname" required pattern="[A-Za-z]+$"></td>
+			</tr>
+			<tr>
+				<th>Phone Number</th>
+				<td><input type="text" class="form-control" name="pno" pattern="[7-9]{1}[0-9]{9}" required></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="text" class="form-control" name="email" required=""></td>
+			</tr>
+			<tr>
+				<th>User Name</th>
+				<td><input type="text" class="form-control" name="uname" placeholder="MUST BE 8 CHARACTER" required></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" class="form-control" name="pwd" placeholder="MUST BE 8 CHARACTER" required></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="register" value="REGISTER">
+			</tr>
+		</table>
+	</form>
+	{% endif %}
+
+	 </div>
+  </section><!-- End Hero -->
+
+<center>
+	<h1>View Teacher</h1>
+	<table class="table" style="width: 600px">
+		<tr>
+			<th>Teacher name</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+			<th>subject name</th>
+		</tr>
+		{% for row in data['teacher'] %}
+		<tr>
+			<td>{{row['first_name']+ " "+row['last_name']}}</td>
+			<td>{{row['phone']}}</td>
+			<td>{{row['email']}}</td>
+			<td>{{row['subject_name']}}</td>
+			<td><a class="btn btn-info" href="?action=delete&id={{row['login_id']}}">delete</a></td>
+			<td><a class="btn btn-success" href="?action=update&id={{row['login_id']}}">update</a></td>
+		</tr>
+		{% endfor %}
+		
+	</table>
+</center>
+{% include 'footer.html'%}
+			

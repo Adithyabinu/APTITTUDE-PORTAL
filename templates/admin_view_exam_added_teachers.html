@@ -1,0 +1,38 @@
+{% include 'admin_header.html' %}
+
+ <section id="hero" style="max-height: 500px;min-height: 500px">
+    <div class="hero-container">
+     
+      <h1>We're Creative Agency</h1>
+    
+    </div>
+  </section><!-- End Hero -->
+
+<center>
+
+{% if data['teacher'] %}
+	<h1>View Teacher</h1>
+	<table class="table" style="width: 700px">
+		<tr>
+			<th>Teacher name</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+			
+		</tr>
+		{% for row in data['teacher'] %}
+		<tr>
+			<td>{{row['first_name']+ " "+row['last_name']}}</td>
+			<td>{{row['phone']}}</td>
+			<td>{{row['email']}}</td>
+			<td><a class="btn btn-success" href="admin_view_questions?sid={{row['staff_id']}}&examid={{data['exam_id']}}">VIEW QUESTIONS</a></td>
+			
+		</tr>
+		{% endfor %}
+		
+	</table>
+	{%  else %}
+	<h1>NO TEACHERS ADDED QUESTIONS FOR THIS EXAM</h1>
+	{% endif %}
+</center>
+{% include 'footer.html'%}
+			

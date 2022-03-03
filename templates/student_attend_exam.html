@@ -1,0 +1,57 @@
+{% include 'studenthome.html' %}
+<section id="hero">
+    <div class="hero-container">
+      <h3>WELCOME <strong>APTITUDE PORTAL</strong></h3>
+      <h1>APTITTUDE PORTAL</h1>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+	<center>
+	<form method="post">
+		<table border="6">
+			<h1><U>ATTENDING EXAM</U></h1>
+			<tr>
+				<th>Question title</th>
+				<td><input type="text" name="ques"></td>
+			</tr>
+			<tr>
+				<th>Student name</th>
+				<td><input type="text" name="std"></td>	
+			</tr>
+			<tr>
+				<th>Question</th>
+				<td><input type="text" name="qust"></td>
+			</tr>	
+			<tr>
+				<th>Option 1</th>
+				<td><input type="text" name="op1"></td>
+			</tr>
+			<tr>
+				<th>Option 2</th>
+				<td><input type="text" name="op2"></td>
+			</tr>
+			<tr>
+				<th>Option 3</th>
+				<td><input type="text" name="op3"></td>
+			</tr>
+			<tr>
+				<th>Option 4</th>
+				<td><input type="text" name="op4"></td>
+			</tr>
+			<tr>
+				<th>Answer details</th>
+				<td>
+					1<input type="radio" name="one" value="option1">
+					2<input type="radio" name="one" value="option2">
+					3<input type="radio" name="one" value="option3">
+					4<input type="radio" name="one" value="option4">
+				</td>
+			</tr>
+			<tr>	
+				<td colspan="2" align="center"><input type="submit" name="submit" values="submit"></td>
+
+			</tr>
+		</table>
+	</form>
+</center>
+{% include 'footer.html' %}
